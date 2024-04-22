@@ -14,7 +14,7 @@ function Form() {
         <div className="relative w-full overflow-hidden">
           {currentStep == 1 && (
             <div className="flex flex-col justify-start items-center min-w-full p-4 rounded-md bg-white h-fit">
-              <p className="flex flex-col justify-start items-start text-lg text-gray-400">
+              <p className="flex flex-col justify-start items-start w-full text-lg text-gray-400">
                 <span className="text-3xl font-ubuntu_bold text-black">
                   Personal Info
                 </span>
