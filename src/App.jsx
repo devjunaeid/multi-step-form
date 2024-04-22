@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FormContext } from "./Context";
 import SideBar from "./components/SideBar";
 import Button from "./components/Button";
-import From from "./components/From";
+import Form from "./components/Form";
 
 const steps = [
   {
@@ -70,7 +70,7 @@ function App() {
           <SideBar />
           <div className="flex flex-col flex-1 w-full h-full justify-between items-center">
             <div className="flex flex-col justify-between w-full h-full md:pl-5">
-              <From />
+              <Form />
               <Button />
             </div>
           </div>
