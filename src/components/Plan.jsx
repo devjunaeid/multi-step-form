@@ -123,27 +123,29 @@ function Plan() {
 
   return (
     <div className="w-full">
-      {planType.data.map((item) => (
-        <div
-          className={`flex w-full p-4 rounded-md bg-neutral-100 gap-5 mt-5 hover:scale-105 hover:border hover:border-blue-500 ${
-            plan === item.name
-              ? "border border-blue-500"
-              : "border border-gray-100"
-          }`}
-          key={item.id}
-          onClick={() => handleSelect(item)}
-        >
-          <img src={item.img} alt="arcade-icon" className="w-10 h-10" />
-          <div className="flex flex-col justify-start items-start">
-            <p className="text-xl font-ubuntu_medium">{item.name}</p>
-            <p className="text-md font-ubuntu_regular text-gray-400">
-              {item.price}$
-            </p>
-            {item["msg"] !== undefined ? <p>{item.msg}</p> : null}
+      <div className="min-w-full flex flex-col md:flex-row md:justify-between md:mt-5">
+        {planType.data.map((item) => (
+          <div
+            className={`flex w-full p-4 rounded-md bg-neutral-100 gap-5 mt-5 hover:scale-105 hover:border hover:border-blue-500 ${
+              plan === item.name
+                ? "border border-blue-500"
+                : "border border-gray-100"
+            } md:flex-col md:w-1/3 md:mx-2`}
+            key={item.id}
+            onClick={() => handleSelect(item)}
+          >
+            <img src={item.img} alt="arcade-icon" className="w-10 h-10 md:mb-8" />
+            <div className="flex flex-col justify-start items-start">
+              <p className="text-xl font-ubuntu_medium">{item.name}</p>
+              <p className="text-md font-ubuntu_regular text-gray-400">
+                {item.price}$
+              </p>
+              {item["msg"] !== undefined ? <p>{item.msg}</p> : null}
+            </div>
           </div>
-        </div>
-      ))}
-      <div className="flex justify-center w-full mt-5">
+        ))}
+      </div>
+      <div className="flex justify-center w-full mt-5 md:mt-8">
         <label className="inline-flex gap-3 items-center cursor-pointer">
           <span
             className={
