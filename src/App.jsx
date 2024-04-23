@@ -35,6 +35,7 @@ function App() {
     email: "",
     phone: "",
     plan: null,
+    addons: {},
   });
   const totalStep = steps.length;
 
