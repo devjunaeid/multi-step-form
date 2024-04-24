@@ -3,6 +3,7 @@ import { FormContext } from "./Context";
 import SideBar from "./components/SideBar";
 import Button from "./components/Button";
 import Form from "./components/Form";
+import { CheckInput } from "./utils/FormValidation";
 
 const steps = [
   {
@@ -37,10 +38,30 @@ function App() {
     plan: null,
     addons: {},
   });
+  const [error, setError] = useState({});
   const totalStep = steps.length;
 
   const handleNext = () => {
-    setCurrentStep(currentStep + 1);
+    switch (currentStep) {
+      case 1:
+        if (Object.keys(error).length == 0){
+          setCurrentStep(currentStep + 1);
+        }
+        break;
+      case 2:
+        if (formData.plan == null) {
+          setError({plan: "Please Select a plan to continue!"});
+        } else {
+          setError("");
+          setCurrentStep(currentStep + 1);
+        }
+        break;
+      case 3:
+        setCurrentStep(currentStep + 1)
+        break;
+      default:
+        break;
+    }
   };
 
   const handlePrev = () => {
@@ -64,6 +85,8 @@ function App() {
           handleNext,
           handlePrev,
           handleSubmit,
+          error,
+          setError
         }}
       >
         {/* Multistep Form Component */}
