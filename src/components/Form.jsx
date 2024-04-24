@@ -2,13 +2,17 @@ import React, { useContext } from "react";
 import { FormContext } from "../Context";
 import Plan from "./Plan";
 import AddOns from "./AddOns";
+import { CheckInput } from "../utils/FormValidation";
 
 function Form() {
-  const { currentStep, formData, setFormData } = useContext(FormContext);
+  const { currentStep, formData, setFormData, error, setError } =
+    useContext(FormContext);
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.name] : e.target.value})
-    console.log(formData)
-  }
+    const temp = { ...formData, [e.target.name]: e.target.value };
+    const errRes = CheckInput(temp);
+    setError(errRes);
+    setFormData(temp);
+  };
   return (
     <div>
       <form className="w-[95%] relative m-auto h-fit -mt-[2rem] bg-white rounded-md md:mt-0">
@@ -22,12 +26,19 @@ function Form() {
                 Please provide your name, email address and phone number.
               </p>
               <div className="flex flex-col justify-start items-start w-full mt-[1.2rem]">
-                <label
-                  htmlFor="name"
-                  className="text-sm font-ubuntu_medium text-blue-950"
-                >
-                  Name
-                </label>
+                <div className="w-full flex justify-between items-center">
+                  <label
+                    htmlFor="name"
+                    className="text-sm font-ubuntu_medium text-blue-950"
+                  >
+                    Name
+                  </label>
+                  {error.name && (
+                    <p className="text-xs text-red-500 font-semibold">
+                      {error.name}
+                    </p>
+                  )}
+                </div>
                 <input
                   name="name"
                   type="text"
@@ -38,12 +49,19 @@ function Form() {
                 />
               </div>
               <div className="flex flex-col justify-start items-start w-full mt-[1.2rem]">
-                <label
-                  htmlFor="email"
-                  className="text-sm font-ubuntu_medium text-blue-950"
-                >
-                  Email Address
-                </label>
+                <div className="w-full flex justify-between items-center">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-ubuntu_medium text-blue-950"
+                  >
+                    Email Address
+                  </label>
+                  {error.email && (
+                    <p className="text-xs text-red-500 font-semibold">
+                      {error.email}
+                    </p>
+                  )}
+                </div>
                 <input
                   name="email"
                   type="text"
@@ -54,17 +72,24 @@ function Form() {
                 />
               </div>
               <div className="flex flex-col justify-start items-start w-full my-[1.2rem]">
-                <label
-                  htmlFor="phone"
-                  className="text-sm font-ubuntu_medium text-blue-950"
-                >
-                  Phone Number
-                </label>
+                <div className="w-full flex justify-between items-center">
+                  <label
+                    htmlFor="phone"
+                    className="text-sm font-ubuntu_medium text-blue-950"
+                  >
+                    Phone Number
+                  </label>
+                  {error.phone && (
+                    <p className="text-xs text-red-500 font-semibold">
+                      {error.phone}
+                    </p>
+                  )}
+                </div>
                 <input
                   name="phone"
                   type="text"
                   onChange={(e) => handleChange(e)}
-                  placeholder="e.g. +88 123 456 789"
+                  placeholder="e.g. +88 0112345xxxx"
                   value={formData.phone ? formData.phone : ""}
                   className="p-3 w-full border border-gray-300 rounded-sm placeholder:font-semibold"
                 />
