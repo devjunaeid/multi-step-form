@@ -45,7 +45,7 @@ function Button() {
           }
           onClick={() => handleSubmit()}
         >
-          Submit
+          Subscribe
         </button>
       </div>
     </div>
