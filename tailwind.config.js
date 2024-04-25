@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'sidebarDesktop': "url('./src/assets/images/bg-sidebar-desktop.svg')",
-        'sidebarMobile': "url('./src/assets/images/bg-sidebar-mobile.svg')",
+        'sidebarDesktop': "url('/images/bg-sidebar-desktop.svg')",
+        'sidebarMobile': "url('/images/bg-sidebar-mobile.svg')",
       },
     },
     fontFamily:{
