@@ -3,6 +3,8 @@ import { FormContext } from "../Context";
 import Plan from "./Plan";
 import AddOns from "./AddOns";
 import { CheckInput } from "../utils/FormValidation";
+import Summary from "./Summary";
+import ThankYou from "./ThankYou";
 
 function Form() {
   const { currentStep, formData, setFormData, error, setError } =
@@ -14,9 +16,9 @@ function Form() {
     setFormData(temp);
   };
   return (
-    <div>
-      <form className="w-[95%] relative m-auto h-fit -mt-[2rem] bg-white rounded-md md:mt-0">
-        <div className="relative w-full overflow-hidden">
+    <div className="flex h-full">
+      <form className="w-[95%] relative m-auto h-fit -mt-[2rem] bg-white rounded-md md:mt-0 md:h-full">
+        <div className="relative flex w-full min-h-full">
           {currentStep == 1 && (
             <div className="flex flex-col justify-start items-center min-w-full p-4 rounded-md bg-white h-fit">
               <p className="flex flex-col justify-start items-start w-full text-lg text-gray-400">
@@ -132,48 +134,14 @@ function Form() {
                 </span>
                 Double check everything looks OK before Confirming.
               </p>
-              <div className="flex flex-col justify-start items-start w-full mt-[1.2rem]">
-                <label
-                  htmlFor="name"
-                  className="text-sm font-ubuntu_medium text-blue-950"
-                >
-                  Name
-                </label>
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="e.g. Thamid Junaeid"
-                  className="p-3 w-full border border-gray-300 rounded-sm placeholder:font-semibold"
-                />
-              </div>
-              <div className="flex flex-col justify-start items-start w-full mt-[1.2rem]">
-                <label
-                  htmlFor="email"
-                  className="text-sm font-ubuntu_medium text-blue-950"
-                >
-                  Email Address
-                </label>
-                <input
-                  name="email"
-                  type="text"
-                  placeholder="e.g. demo@email.com"
-                  className="p-3 w-full border border-gray-300 rounded-sm placeholder:font-semibold"
-                />
-              </div>
-              <div className="flex flex-col justify-start items-start w-full my-[1.2rem]">
-                <label
-                  htmlFor="phone"
-                  className="text-sm font-ubuntu_medium text-blue-950"
-                >
-                  Phone Number
-                </label>
-                <input
-                  name="phone"
-                  type="text"
-                  placeholder="e.g. +88 123 456 789"
-                  className="p-3 w-full border border-gray-300 rounded-sm placeholder:font-semibold"
-                />
-              </div>
+              <Summary />
+            </div>
+          )}
+
+          {/* Success */}
+          {currentStep == 5 && (
+            <div className="flex flex-col justify-center items-center min-w-full min-h-full p-4 rounded-md bg-white">
+             <ThankYou /> 
             </div>
           )}
         </div>
