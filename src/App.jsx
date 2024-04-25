@@ -40,24 +40,29 @@ function App() {
   });
   const [error, setError] = useState({});
   const totalStep = steps.length;
-
   const handleNext = () => {
     switch (currentStep) {
       case 1:
-        if (Object.keys(error).length == 0){
+        const err = CheckInput({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+        });
+        setError(err);
+        if (Object.keys(err).length == 0) {
           setCurrentStep(currentStep + 1);
         }
         break;
       case 2:
         if (formData.plan == null) {
-          setError({plan: "Please Select a plan to continue!"});
+          setError({ plan: "Please Select a plan to continue!" });
         } else {
           setError("");
           setCurrentStep(currentStep + 1);
         }
         break;
       case 3:
-        setCurrentStep(currentStep + 1)
+        setCurrentStep(currentStep + 1);
         break;
       default:
         break;
@@ -86,7 +91,7 @@ function App() {
           handlePrev,
           handleSubmit,
           error,
-          setError
+          setError,
         }}
       >
         {/* Multistep Form Component */}
