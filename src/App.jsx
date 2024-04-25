@@ -74,7 +74,10 @@ function App() {
   };
 
   const handleSubmit = (e) => {
-    console.log("Submitted!!");
+    if (Object.keys(error).length == 0) {
+      setCurrentStep(currentStep + 1);
+      console.log(formData);
+    }
   };
 
   return (
@@ -100,7 +103,7 @@ function App() {
           <div className="flex flex-col flex-1 w-full h-full justify-between items-center">
             <div className="flex flex-col justify-between w-full h-full md:pl-5">
               <Form />
-              <Button />
+              {currentStep != 5 && <Button /> }
             </div>
           </div>
         </div>
