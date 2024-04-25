@@ -53,12 +53,11 @@ const yearly = {
 };
 
 function Plan() {
-  const { formData, setFormData } = useContext(FormContext);
+  const { formData, setFormData, error } = useContext(FormContext);
 
   const [planType, setPlanType] = useState(monthly);
-  const [plan, setPlan] = useState("Arcade");
+  const [plan, setPlan] = useState("");
   const [tog, setTog] = useState(false);
-
   useState(() => {
     if (formData.plan != null) {
       if (formData.plan?.type === "yearly") {
@@ -174,6 +173,7 @@ function Plan() {
           </span>
         </label>
       </div>
+      {error.plan && <p className="text-sm text-red-500 font-semibold">{error.plan}</p>}
     </div>
   );
 }
